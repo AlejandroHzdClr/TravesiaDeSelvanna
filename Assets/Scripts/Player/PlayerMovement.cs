@@ -56,14 +56,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!isGrounded)
-        {
-            anim.SetBool(Jumping,true);
-        }
-        else
-        {
-            anim.SetBool(Jumping,false);
-        }
+        anim.SetBool(Jumping,!(isGrounded));
+        
     }
 
     private void FixedUpdate()

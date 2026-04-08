@@ -3,9 +3,9 @@ using UnityEngine.Pool;
 
 public class ShootSystem : MonoBehaviour
 {
-
-    [SerializeField]private Bullet ball;
+    [SerializeField] private Bullet ball;
     public ObjectPool<Bullet> pool { get; set; }
+
     private Vector3 mousePoint;
 
     private bool isCharging = false;
@@ -14,8 +14,6 @@ public class ShootSystem : MonoBehaviour
     [SerializeField] private float maxCharge = 2f;
     [SerializeField] private float chargeSpeed = 1f;
 
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         pool = new ObjectPool<Bullet>(CreateBullet, GetBullet, ReleaseBullet);
@@ -32,7 +30,9 @@ public class ShootSystem : MonoBehaviour
     {
         bullet.gameObject.SetActive(true);
         bullet.transform.position = transform.position;
+
         Vector3 direction = (mousePoint - transform.position).normalized;
+
         bullet.transform.right = direction;
     }
 
@@ -40,8 +40,20 @@ public class ShootSystem : MonoBehaviour
     {
         bullet.gameObject.SetActive(false);
     }
-    
-    // Update is called once per frame
+
+    private Vector3 GetMouseWorldPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane plane = new Plane(Vector3.forward, Vector3.zero);
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            return ray.GetPoint(distance);
+        }
+
+        return transform.position;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -60,13 +72,11 @@ public class ShootSystem : MonoBehaviour
         {
             if (charge >= maxCharge)
             {
-                mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePoint.z = 0f;
+                mousePoint = GetMouseWorldPoint();
                 pool.Get();
             }
 
             isCharging = false;
         }
     }
-
 }

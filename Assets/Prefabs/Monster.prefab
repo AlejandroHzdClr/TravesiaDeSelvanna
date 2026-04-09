@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 5797221318353704862}
   - component: {fileID: 7521005457292550653}
   - component: {fileID: 5007930043580970305}
+  - component: {fileID: 7948455710705970222}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -186,7 +187,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -207,6 +208,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatrollSystem
   patrolPoints: {fileID: 6680599701607295138}
   monsterSpeed: 4
+  damage: 10
+--- !u!114 &7948455710705970222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481493049275606925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14def5cf736c4861912a532bb03e2a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Base.BaseCharacter
+  <TotalHealth>k__BackingField: 20
 --- !u!1 &8987744199178701401
 GameObject:
   m_ObjectHideFlags: 0

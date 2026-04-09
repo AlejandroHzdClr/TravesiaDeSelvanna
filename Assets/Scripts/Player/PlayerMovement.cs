@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -15,23 +16,45 @@ namespace Player
         private float hInput;
         private int groundMask;
         private bool isGrounded;
+        private bool jumpPressed;
 
-
+        private PlayerInput input;
         protected override void Awake()
         {
             base.Awake();
+            
+            input = new PlayerInput();
+            input.Gameplay.Enable();
+
+            input.Gameplay.AD.performed += OnMovePerformed;
+            input.Gameplay.AD.canceled += OnMoveCanceled;
+            input.Gameplay.Jump.performed += OnJumpPerformed;
+            
             groundMask = LayerMask.GetMask("Ground");
+        }
+
+        private void OnJumpPerformed(InputAction.CallbackContext obj)
+        {
+            jumpPressed = true;
+        }
+
+        private void OnMoveCanceled(InputAction.CallbackContext obj)
+        {
+            hInput = 0;
+        }
+
+        private void OnMovePerformed(InputAction.CallbackContext obj)
+        {
+            hInput = obj.ReadValue<float>();
         }
 
         void Update()
         {
-            hInput = Input.GetAxisRaw("Horizontal");
-
             if (hInput>0)
             {
                 transform.eulerAngles = Vector3.zero;
             }
-            else if(hInput < 0 && transform.eulerAngles.y==0)
+            else if(hInput < 0)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
@@ -44,13 +67,13 @@ namespace Player
                 groundMask
             );
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            
+            if (isGrounded && jumpPressed)
             {
-                if (isGrounded)
-                {
-                    Main.Rb.AddForce(Vector2.up * Main.JumpForce, ForceMode2D.Impulse);
-                }
+                Main.Rb.AddForce(Vector2.up * Main.JumpForce, ForceMode2D.Impulse);
+                jumpPressed = false;
             }
+            
 
             Main.Anim.SetBool(Jumping,!(isGrounded));
         
@@ -59,7 +82,6 @@ namespace Player
         private void FixedUpdate()
         {
             Main.Rb.AddForce(new Vector2(hInput, 0) * Main.MovementSpeed, ForceMode2D.Force);
-        
         }
 
         private void OnDrawGizmosSelected()

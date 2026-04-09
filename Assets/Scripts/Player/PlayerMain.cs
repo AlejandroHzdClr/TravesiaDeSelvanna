@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -15,5 +16,6 @@ namespace Player
             Rb = GetComponent<Rigidbody2D>();
             Anim = GetComponent<Animator>();
         }
+        
     }
 }

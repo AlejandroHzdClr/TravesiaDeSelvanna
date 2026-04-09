@@ -1003,9 +1003,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1429284610506099305, guid: ca015cc5c4840a54188cf07a22d7d34c, type: 3}
       insertIndex: 5
       addedObject: {fileID: 1030540722}
-    - targetCorrespondingSourceObject: {fileID: 1429284610506099305, guid: ca015cc5c4840a54188cf07a22d7d34c, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 1030540730}
   m_SourcePrefab: {fileID: 100100000, guid: ca015cc5c4840a54188cf07a22d7d34c, type: 3}
 --- !u!1 &996264538
 GameObject:
@@ -1221,19 +1218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMain
   <MovementSpeed>k__BackingField: 35
   <JumpForce>k__BackingField: 25
---- !u!114 &1030540730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840061490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ffcedc26f314a6996e59ba537271a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealthSystem
-  <TotalHealth>k__BackingField: 100
 --- !u!1001 &1115722893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1293,14 +1277,6 @@ PrefabInstance:
     - target: {fileID: 7481493049275606925, guid: 34a381c76f52cd649a6fa988a7f3b1bf, type: 3}
       propertyPath: m_Name
       value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481493049275606925, guid: 34a381c76f52cd649a6fa988a7f3b1bf, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7521005457292550653, guid: 34a381c76f52cd649a6fa988a7f3b1bf, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70170,10 +70146,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7481493049275606925, guid: 34a381c76f52cd649a6fa988a7f3b1bf, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70321,10 +70293,6 @@ PrefabInstance:
     - target: {fileID: 7481493049275606925, guid: 34a381c76f52cd649a6fa988a7f3b1bf, type: 3}
       propertyPath: m_Name
       value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481493049275606925, guid: 34a381c76f52cd649a6fa988a7f3b1bf, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 
 public class PatrollSystem : MonoBehaviour
@@ -7,6 +9,7 @@ public class PatrollSystem : MonoBehaviour
 
     [SerializeField] private Transform patrolPoints;
     [SerializeField] private float monsterSpeed;
+    [SerializeField] private float damage;
     
     private List<Vector3> patrolPositions = new List<Vector3>();
     private Vector3 currentDestination;
@@ -59,5 +62,13 @@ public class PatrollSystem : MonoBehaviour
             transform.eulerAngles = Vector3.zero;
         }
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(damage);
+            damageable.ShowHealth();
+        }
+    }
 }

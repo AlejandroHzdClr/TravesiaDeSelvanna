@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.InputSystem;
 
 public class ShootSystem : MonoBehaviour
 {
     [SerializeField] private Bullet ball;
     public ObjectPool<Bullet> pool { get; set; }
+
+    private PlayerInput controls;
 
     private Vector3 mousePoint;
 
@@ -16,8 +19,32 @@ public class ShootSystem : MonoBehaviour
 
     void Awake()
     {
+        controls = new PlayerInput();
+
+        // START: cuando se presiona el botón
+        controls.Gameplay.Shoot.started += _ =>
+        {
+            isCharging = true;
+            charge = 0f;
+        };
+
+        // CANCELED: cuando se suelta el botón
+        controls.Gameplay.Shoot.canceled += _ =>
+        {
+            if (charge >= maxCharge)
+            {
+                mousePoint = GetMouseWorldPoint();
+                pool.Get();
+            }
+
+            isCharging = false;
+        };
+
         pool = new ObjectPool<Bullet>(CreateBullet, GetBullet, ReleaseBullet);
     }
+
+    void OnEnable() => controls.Enable();
+    void OnDisable() => controls.Disable();
 
     private Bullet CreateBullet()
     {
@@ -32,7 +59,6 @@ public class ShootSystem : MonoBehaviour
         bullet.transform.position = transform.position;
 
         Vector3 direction = (mousePoint - transform.position).normalized;
-
         bullet.transform.right = direction;
     }
 
@@ -43,40 +69,23 @@ public class ShootSystem : MonoBehaviour
 
     private Vector3 GetMouseWorldPoint()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector2 mouseScreen = controls.Gameplay.Aim.ReadValue<Vector2>();
+
+        Ray ray = Camera.main.ScreenPointToRay(mouseScreen);
         Plane plane = new Plane(Vector3.forward, Vector3.zero);
 
         if (plane.Raycast(ray, out float distance))
-        {
             return ray.GetPoint(distance);
-        }
 
         return transform.position;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            isCharging = true;
-            charge = 0f;
-        }
-
-        if (Input.GetMouseButton(0) && isCharging)
+        if (isCharging)
         {
             charge += chargeSpeed * Time.deltaTime;
             charge = Mathf.Clamp(charge, 0f, maxCharge);
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (charge >= maxCharge)
-            {
-                mousePoint = GetMouseWorldPoint();
-                pool.Get();
-            }
-
-            isCharging = false;
         }
     }
 }

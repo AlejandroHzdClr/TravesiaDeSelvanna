@@ -89,7 +89,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""Gameplay"",
+            ""name"": ""Bosque"",
             ""id"": ""1b3e9849-285e-450e-b619-e55670548fed"",
             ""actions"": [
                 {
@@ -197,21 +197,138 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Terror"",
+            ""id"": ""b3d6dde6-aa58-4ce0-8bd3-b2ec67127c26"",
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""3869e8af-7dce-48de-a424-22ec048c012d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Light"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2493b26-9a27-42a4-a13c-5e0883fad774"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""238d2a6c-b80f-4c3e-a4a8-7a12a8347203"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AD"",
+                    ""type"": ""Value"",
+                    ""id"": ""5a42bd4c-3ec6-4e02-a3d8-666c93769552"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""88cc5388-b460-4b90-b800-71e38f2f7f35"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aaaf7c96-5b9d-4c2d-a786-79e31d1966a8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28250fd1-c86d-428e-80e5-b674ecc1ff6f"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""aa36b4dd-e051-4874-994d-fd83e52cd1fd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AD"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""47b567f5-8161-439b-ae34-8686e5c80ea8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9c32a71e-551d-4b22-8209-09eb631b8d88"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Gameplay
-        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
-        m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
-        m_Gameplay_AD = m_Gameplay.FindAction("AD", throwIfNotFound: true);
-        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        // Bosque
+        m_Bosque = asset.FindActionMap("Bosque", throwIfNotFound: true);
+        m_Bosque_Shoot = m_Bosque.FindAction("Shoot", throwIfNotFound: true);
+        m_Bosque_Aim = m_Bosque.FindAction("Aim", throwIfNotFound: true);
+        m_Bosque_AD = m_Bosque.FindAction("AD", throwIfNotFound: true);
+        m_Bosque_Jump = m_Bosque.FindAction("Jump", throwIfNotFound: true);
+        // Terror
+        m_Terror = asset.FindActionMap("Terror", throwIfNotFound: true);
+        m_Terror_Shoot = m_Terror.FindAction("Shoot", throwIfNotFound: true);
+        m_Terror_Light = m_Terror.FindAction("Light", throwIfNotFound: true);
+        m_Terror_Aim = m_Terror.FindAction("Aim", throwIfNotFound: true);
+        m_Terror_AD = m_Terror.FindAction("AD", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
     {
-        UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerInput.Gameplay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Bosque.enabled, "This will cause a leak and performance issues, PlayerInput.Bosque.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Terror.enabled, "This will cause a leak and performance issues, PlayerInput.Terror.Disable() has not been called.");
     }
 
     /// <summary>
@@ -284,44 +401,44 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Gameplay
-    private readonly InputActionMap m_Gameplay;
-    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
-    private readonly InputAction m_Gameplay_Shoot;
-    private readonly InputAction m_Gameplay_Aim;
-    private readonly InputAction m_Gameplay_AD;
-    private readonly InputAction m_Gameplay_Jump;
+    // Bosque
+    private readonly InputActionMap m_Bosque;
+    private List<IBosqueActions> m_BosqueActionsCallbackInterfaces = new List<IBosqueActions>();
+    private readonly InputAction m_Bosque_Shoot;
+    private readonly InputAction m_Bosque_Aim;
+    private readonly InputAction m_Bosque_AD;
+    private readonly InputAction m_Bosque_Jump;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Gameplay".
+    /// Provides access to input actions defined in input action map "Bosque".
     /// </summary>
-    public struct GameplayActions
+    public struct BosqueActions
     {
         private @PlayerInput m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public GameplayActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public BosqueActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Shoot".
+        /// Provides access to the underlying input action "Bosque/Shoot".
         /// </summary>
-        public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
+        public InputAction @Shoot => m_Wrapper.m_Bosque_Shoot;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Aim".
+        /// Provides access to the underlying input action "Bosque/Aim".
         /// </summary>
-        public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
+        public InputAction @Aim => m_Wrapper.m_Bosque_Aim;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/AD".
+        /// Provides access to the underlying input action "Bosque/AD".
         /// </summary>
-        public InputAction @AD => m_Wrapper.m_Gameplay_AD;
+        public InputAction @AD => m_Wrapper.m_Bosque_AD;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Jump".
+        /// Provides access to the underlying input action "Bosque/Jump".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Jump => m_Wrapper.m_Bosque_Jump;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
+        public InputActionMap Get() { return m_Wrapper.m_Bosque; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -329,9 +446,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="GameplayActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="BosqueActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(BosqueActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -339,11 +456,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="GameplayActions" />
-        public void AddCallbacks(IGameplayActions instance)
+        /// <seealso cref="BosqueActions" />
+        public void AddCallbacks(IBosqueActions instance)
         {
-            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_BosqueActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BosqueActionsCallbackInterfaces.Add(instance);
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
@@ -364,8 +481,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="GameplayActions" />
-        private void UnregisterCallbacks(IGameplayActions instance)
+        /// <seealso cref="BosqueActions" />
+        private void UnregisterCallbacks(IBosqueActions instance)
         {
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
@@ -382,12 +499,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GameplayActions.UnregisterCallbacks(IGameplayActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="BosqueActions.UnregisterCallbacks(IBosqueActions)" />.
         /// </summary>
-        /// <seealso cref="GameplayActions.UnregisterCallbacks(IGameplayActions)" />
-        public void RemoveCallbacks(IGameplayActions instance)
+        /// <seealso cref="BosqueActions.UnregisterCallbacks(IBosqueActions)" />
+        public void RemoveCallbacks(IBosqueActions instance)
         {
-            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_BosqueActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -397,27 +514,156 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="GameplayActions.AddCallbacks(IGameplayActions)" />
-        /// <seealso cref="GameplayActions.RemoveCallbacks(IGameplayActions)" />
-        /// <seealso cref="GameplayActions.UnregisterCallbacks(IGameplayActions)" />
-        public void SetCallbacks(IGameplayActions instance)
+        /// <seealso cref="BosqueActions.AddCallbacks(IBosqueActions)" />
+        /// <seealso cref="BosqueActions.RemoveCallbacks(IBosqueActions)" />
+        /// <seealso cref="BosqueActions.UnregisterCallbacks(IBosqueActions)" />
+        public void SetCallbacks(IBosqueActions instance)
         {
-            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_BosqueActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_BosqueActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="GameplayActions" /> instance referencing this action map.
+    /// Provides a new <see cref="BosqueActions" /> instance referencing this action map.
     /// </summary>
-    public GameplayActions @Gameplay => new GameplayActions(this);
+    public BosqueActions @Bosque => new BosqueActions(this);
+
+    // Terror
+    private readonly InputActionMap m_Terror;
+    private List<ITerrorActions> m_TerrorActionsCallbackInterfaces = new List<ITerrorActions>();
+    private readonly InputAction m_Terror_Shoot;
+    private readonly InputAction m_Terror_Light;
+    private readonly InputAction m_Terror_Aim;
+    private readonly InputAction m_Terror_AD;
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
+    /// Provides access to input actions defined in input action map "Terror".
     /// </summary>
-    /// <seealso cref="GameplayActions.AddCallbacks(IGameplayActions)" />
-    /// <seealso cref="GameplayActions.RemoveCallbacks(IGameplayActions)" />
-    public interface IGameplayActions
+    public struct TerrorActions
+    {
+        private @PlayerInput m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TerrorActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Terror/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Terror_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "Terror/Light".
+        /// </summary>
+        public InputAction @Light => m_Wrapper.m_Terror_Light;
+        /// <summary>
+        /// Provides access to the underlying input action "Terror/Aim".
+        /// </summary>
+        public InputAction @Aim => m_Wrapper.m_Terror_Aim;
+        /// <summary>
+        /// Provides access to the underlying input action "Terror/AD".
+        /// </summary>
+        public InputAction @AD => m_Wrapper.m_Terror_AD;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Terror; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TerrorActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TerrorActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TerrorActions" />
+        public void AddCallbacks(ITerrorActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TerrorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TerrorActionsCallbackInterfaces.Add(instance);
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @Light.started += instance.OnLight;
+            @Light.performed += instance.OnLight;
+            @Light.canceled += instance.OnLight;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
+            @AD.started += instance.OnAD;
+            @AD.performed += instance.OnAD;
+            @AD.canceled += instance.OnAD;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TerrorActions" />
+        private void UnregisterCallbacks(ITerrorActions instance)
+        {
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @Light.started -= instance.OnLight;
+            @Light.performed -= instance.OnLight;
+            @Light.canceled -= instance.OnLight;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
+            @AD.started -= instance.OnAD;
+            @AD.performed -= instance.OnAD;
+            @AD.canceled -= instance.OnAD;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TerrorActions.UnregisterCallbacks(ITerrorActions)" />.
+        /// </summary>
+        /// <seealso cref="TerrorActions.UnregisterCallbacks(ITerrorActions)" />
+        public void RemoveCallbacks(ITerrorActions instance)
+        {
+            if (m_Wrapper.m_TerrorActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TerrorActions.AddCallbacks(ITerrorActions)" />
+        /// <seealso cref="TerrorActions.RemoveCallbacks(ITerrorActions)" />
+        /// <seealso cref="TerrorActions.UnregisterCallbacks(ITerrorActions)" />
+        public void SetCallbacks(ITerrorActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TerrorActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TerrorActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TerrorActions" /> instance referencing this action map.
+    /// </summary>
+    public TerrorActions @Terror => new TerrorActions(this);
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Bosque" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="BosqueActions.AddCallbacks(IBosqueActions)" />
+    /// <seealso cref="BosqueActions.RemoveCallbacks(IBosqueActions)" />
+    public interface IBosqueActions
     {
         /// <summary>
         /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -447,5 +693,41 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Terror" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TerrorActions.AddCallbacks(ITerrorActions)" />
+    /// <seealso cref="TerrorActions.RemoveCallbacks(ITerrorActions)" />
+    public interface ITerrorActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Light" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Aim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAim(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AD" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAD(InputAction.CallbackContext context);
     }
 }

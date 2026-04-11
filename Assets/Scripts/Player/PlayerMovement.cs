@@ -19,16 +19,25 @@ namespace Player
         private bool jumpPressed;
 
         private PlayerInput input;
+        [SerializeField] private float airControlMultiplier = 1.2f;
+
         protected override void Awake()
         {
             base.Awake();
             
             input = new PlayerInput();
-            input.Gameplay.Enable();
-
-            input.Gameplay.AD.performed += OnMovePerformed;
-            input.Gameplay.AD.canceled += OnMoveCanceled;
-            input.Gameplay.Jump.performed += OnJumpPerformed;
+            if (Main.SlowPlaying)
+            {
+                input.Terror.Enable();
+                input.Bosque.Disable();
+            }
+            else
+            {
+                input.Bosque.Enable();
+                input.Terror.Disable();
+                input.Bosque.Jump.performed += OnJumpPerformed;
+            }
+            
             
             groundMask = LayerMask.GetMask("Ground");
         }
@@ -38,18 +47,18 @@ namespace Player
             jumpPressed = true;
         }
 
-        private void OnMoveCanceled(InputAction.CallbackContext obj)
-        {
-            hInput = 0;
-        }
-
-        private void OnMovePerformed(InputAction.CallbackContext obj)
-        {
-            hInput = obj.ReadValue<float>();
-        }
-
         void Update()
         {
+            if (Main.SlowPlaying)
+            {
+                hInput = input.Terror.AD.ReadValue<float>();
+            }
+            else
+            {
+                hInput = input.Bosque.AD.ReadValue<float>();
+            }
+            
+            
             if (hInput>0)
             {
                 transform.eulerAngles = Vector3.zero;
@@ -81,7 +90,15 @@ namespace Player
 
         private void FixedUpdate()
         {
-            Main.Rb.AddForce(new Vector2(hInput, 0) * Main.MovementSpeed, ForceMode2D.Force);
+            float speed = Main.MovementSpeed;
+
+            if (!isGrounded)
+                speed *= airControlMultiplier;
+
+            Main.Rb.linearVelocity = new Vector2(
+                hInput * speed,
+                Main.Rb.linearVelocity.y
+            );
         }
 
         private void OnDrawGizmosSelected()

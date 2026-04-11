@@ -21,15 +21,13 @@ public class ShootSystem : MonoBehaviour
     {
         controls = new PlayerInput();
 
-        // START: cuando se presiona el botón
-        controls.Gameplay.Shoot.started += _ =>
+        controls.Bosque.Shoot.started += _ =>
         {
             isCharging = true;
             charge = 0f;
         };
 
-        // CANCELED: cuando se suelta el botón
-        controls.Gameplay.Shoot.canceled += _ =>
+        controls.Bosque.Shoot.canceled += _ =>
         {
             if (charge >= maxCharge)
             {
@@ -69,7 +67,7 @@ public class ShootSystem : MonoBehaviour
 
     private Vector3 GetMouseWorldPoint()
     {
-        Vector2 mouseScreen = controls.Gameplay.Aim.ReadValue<Vector2>();
+        Vector2 mouseScreen = controls.Bosque.Aim.ReadValue<Vector2>();
 
         Ray ray = Camera.main.ScreenPointToRay(mouseScreen);
         Plane plane = new Plane(Vector3.forward, Vector3.zero);

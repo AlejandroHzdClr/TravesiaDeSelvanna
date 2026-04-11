@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 5764531043280262309}
   - component: {fileID: 6470499595722555109}
   - component: {fileID: 1173175530184479228}
+  - component: {fileID: 2247480331416478446}
+  - component: {fileID: 2274401687615399966}
+  - component: {fileID: 4633217988252562179}
   - component: {fileID: 5203898383537047351}
   - component: {fileID: 773493205293646626}
   - component: {fileID: 3370022864568208928}
@@ -161,6 +164,46 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.090404995}
   m_Size: {x: 0.9999999, y: 1.8191898}
   m_Direction: 0
+--- !u!114 &2247480331416478446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429284610506099305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83d4bcb8c2448246a62c1b30a95ec40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerMain
+  <MovementSpeed>k__BackingField: 35
+  <JumpForce>k__BackingField: 25
+  <SlowPlaying>k__BackingField: 0
+--- !u!114 &2274401687615399966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429284610506099305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b907fda65395e4d4b85e407f0dac241d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerSystem
+--- !u!114 &4633217988252562179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429284610506099305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ffcedc26f314a6996e59ba537271a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealthSystem
+  <TotalHealth>k__BackingField: 100
 --- !u!114 &5203898383537047351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,8 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4248ee733137754694ecf3a407f3708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem
-  movementSpeed: 40
-  jumpForce: 25
   radius: 0.2
   groundCheck: {fileID: 1030026703635727731}
 --- !u!114 &773493205293646626
@@ -191,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootSystem
   ball: {fileID: 2320110731953602698, guid: da64c4e7385db5741aecf6effbfeb4ea, type: 3}
   maxCharge: 2
-  chargeSpeed: 1
+  chargeSpeed: 3.5
 --- !u!95 &3370022864568208928
 Animator:
   serializedVersion: 7

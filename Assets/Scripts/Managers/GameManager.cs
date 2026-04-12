@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
+using Collectables;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +14,15 @@ namespace Managers
         [field: SerializeField]public Vector3 SavedPosition { get; private set; }
         public Vector3 SavedOrientation { get; private set; }
         public static GameManager Instance { get; private set; }
+        
+        public List<int> BooksList { get; private set; }
 
-        private void Awake()
+        private protected void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
+                BooksList = new List<int>();
                 DontDestroyOnLoad(Instance);
             }
             else
@@ -32,5 +37,12 @@ namespace Managers
             SavedOrientation = targetOrientation;
             SceneManager.LoadScene(sceneNumber);
         }
+
+        public void AddThisBook(int id)
+        {
+            BooksList.Add(id);
+        }
+
+
     }
 }

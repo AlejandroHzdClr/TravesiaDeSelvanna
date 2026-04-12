@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: b65f31f284ecac0459edeb18e0eb53b8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7770114726741446080
+    second: EfectoBala_0
+  - first:
+      213: 6712982093796924979
+    second: EfectoBala_1
+  - first:
+      213: -6900584563030695266
+    second: EfectoBala_2
+  - first:
+      213: 1345679650510862500
+    second: EfectoBala_3
+  - first:
+      213: -2439737585375055534
+    second: EfectoBala_4
+  - first:
+      213: -8883689980017205583
+    second: EfectoBala_5
+  - first:
+      213: -1666091417561430461
+    second: EfectoBala_6
+  - first:
+      213: -4348253929206619156
+    second: EfectoBala_7
+  - first:
+      213: 8017180439582208187
+    second: EfectoBala_8
+  - first:
+      213: 7819328163832218134
+    second: EfectoBala_9
+  - first:
+      213: -6466067047759144871
+    second: EfectoBala_10
+  - first:
+      213: 8738543688675776552
+    second: EfectoBala_11
+  - first:
+      213: -3850330014351167068
+    second: EfectoBala_12
+  - first:
+      213: 6471071085032072917
+    second: EfectoBala_13
+  - first:
+      213: 5413569660391445461
+    second: EfectoBala_14
+  - first:
+      213: -2743354232706434183
+    second: EfectoBala_15
+  - first:
+      213: -664346760371540525
+    second: EfectoBala_16
+  - first:
+      213: 3100928915108490126
+    second: EfectoBala_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 10
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EfectoBala_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 11
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cd84771d2ef4db60800000000000000
+      internalID: 7770114726741446080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ed25cb5ad492d50800000000000000
+      internalID: 6712982093796924979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e92e20a96e23c30a0800000000000000
+      internalID: -6900584563030695266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a8fb2e2380dca210800000000000000
+      internalID: 1345679650510862500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 251fc86a79f442ed0800000000000000
+      internalID: -2439737585375055534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 11
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1be906ee70bc6b480800000000000000
+      internalID: -8883689980017205583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_6
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 10
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3468cecdeaad0e8e0800000000000000
+      internalID: -1666091417561430461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 10
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce36174e616e7a3c0800000000000000
+      internalID: -4348253929206619156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 11
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0f189022fb24f60800000000000000
+      internalID: 8017180439582208187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_9
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6124d635985d38c60800000000000000
+      internalID: 7819328163832218134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_10
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 958157c574ae346a0800000000000000
+      internalID: -6466067047759144871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_11
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82850c1af2b854970800000000000000
+      internalID: 8738543688675776552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_12
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1f29a7041e09ac0800000000000000
+      internalID: -3850330014351167068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_13
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 11
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d663abdddcddc950800000000000000
+      internalID: 6471071085032072917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_14
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 11
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3d67e7cecd02b40800000000000000
+      internalID: 5413569660391445461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_15
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 12
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97bf77a3cd5ade9d0800000000000000
+      internalID: -2743354232706434183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_16
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 12
+        width: 23
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dd6f5c2424c7c6f0800000000000000
+      internalID: -664346760371540525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EfectoBala_17
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 11
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8b67ca3b66b80b20800000000000000
+      internalID: 3100928915108490126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EfectoBala_0: 7770114726741446080
+      EfectoBala_1: 6712982093796924979
+      EfectoBala_10: -6466067047759144871
+      EfectoBala_11: 8738543688675776552
+      EfectoBala_12: -3850330014351167068
+      EfectoBala_13: 6471071085032072917
+      EfectoBala_14: 5413569660391445461
+      EfectoBala_15: -2743354232706434183
+      EfectoBala_16: -664346760371540525
+      EfectoBala_17: 3100928915108490126
+      EfectoBala_2: -6900584563030695266
+      EfectoBala_3: 1345679650510862500
+      EfectoBala_4: -2439737585375055534
+      EfectoBala_5: -8883689980017205583
+      EfectoBala_6: -1666091417561430461
+      EfectoBala_7: -4348253929206619156
+      EfectoBala_8: 8017180439582208187
+      EfectoBala_9: 7819328163832218134
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

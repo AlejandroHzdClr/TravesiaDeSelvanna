@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1441792010988134748}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.13, y: -0.5437598, z: 0}
+  m_LocalPosition: {x: 6.95, y: -0.5437598, z: 0}
   m_LocalScale: {x: 0.8207001, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 3422382454485935105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.78, y: -0.5437598, z: 0}
+  m_LocalPosition: {x: -3.16, y: -0.5437598, z: 0}
   m_LocalScale: {x: 0.8207001, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72,12 +72,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1265989927452606707}
   - component: {fileID: 5797221318353704862}
-  - component: {fileID: 7521005457292550653}
   - component: {fileID: 5007930043580970305}
   - component: {fileID: 7948455710705970222}
-  - component: {fileID: 3709389359910364035}
+  - component: {fileID: 3862326192372791162}
+  - component: {fileID: 7507133183518472977}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Fly Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -150660538525297002, guid: 33f6e07566e2d3149954ace127b3af39, type: 3}
+  m_Sprite: {fileID: -5221888790823589138, guid: 2c9787c45c0a609449f26e45f143b092, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -158,8 +158,36 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!70 &7521005457292550653
-CapsuleCollider2D:
+--- !u!114 &5007930043580970305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481493049275606925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c66423ff2da46143b11fe1b62afadd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatrollSystem
+  patrolPoints: {fileID: 6680599701607295138}
+  monsterSpeed: 4
+  damage: 10
+--- !u!114 &7948455710705970222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481493049275606925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14def5cf736c4861912a532bb03e2a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Base.BaseCharacter
+  <TotalHealth>k__BackingField: 20
+--- !u!58 &3862326192372791162
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -192,38 +220,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03730363, y: 0}
-  m_Size: {x: 2.3879652, y: 2.9612093}
-  m_Direction: 0
---- !u!114 &5007930043580970305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7481493049275606925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c66423ff2da46143b11fe1b62afadd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PatrollSystem
-  patrolPoints: {fileID: 6680599701607295138}
-  monsterSpeed: 4
-  damage: 10
---- !u!114 &7948455710705970222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7481493049275606925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14def5cf736c4861912a532bb03e2a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Base.BaseCharacter
-  <TotalHealth>k__BackingField: 20
---- !u!95 &3709389359910364035
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.59999996
+--- !u!95 &7507133183518472977
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -233,7 +232,7 @@ Animator:
   m_GameObject: {fileID: 7481493049275606925}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ad0fbf3b53a7d254c9247f9be8f2439d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 752b6d2eba0da104b8442f0ab6ad51fe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

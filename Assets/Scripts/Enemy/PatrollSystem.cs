@@ -53,11 +53,11 @@ public class PatrollSystem : MonoBehaviour
     private void FaceToDestination()
     {
         float x = currentDestination.x - transform.position.x;
-        if (Mathf.Approximately(Mathf.Sign(x), -1f))
+        if (Mathf.Approximately(Mathf.Sign(x), 1f))
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        else if (Mathf.Approximately(Mathf.Sign(x), 1f))
+        else if (Mathf.Approximately(Mathf.Sign(x), -1f))
         {
             transform.eulerAngles = Vector3.zero;
         }

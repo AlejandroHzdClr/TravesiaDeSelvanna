@@ -5,11 +5,12 @@ using UnityEngine.Pool;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage;
+    [SerializeField] private float bulletSpeed;
     public ObjectPool<Bullet> MyPool { get; set; }
     
     private void Update()
     {
-        transform.Translate(Vector3.right * (5f * Time.deltaTime));
+        transform.Translate(Vector3.right * (bulletSpeed * Time.deltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D other)

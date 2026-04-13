@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -7,10 +8,26 @@ namespace Player
         private PlayerInput controls;
         private PlayerMain playerMain;
 
+        private GameObject myLight;
+
         protected override void Awake()
         {
             base.Awake();
             controls = new PlayerInput();
+            myLight = transform.GetChild(0).gameObject;
+            
+            controls.Terror.Light.started += LightOnstarted;
+            controls.Terror.Light.canceled += LightOncanceled;
+        }
+
+        private void LightOncanceled(InputAction.CallbackContext obj)
+        {
+            myLight.gameObject.SetActive(false);
+        }
+
+        private void LightOnstarted(InputAction.CallbackContext obj)
+        {
+            myLight.gameObject.SetActive(true);
         }
 
         private void Start()
@@ -49,6 +66,8 @@ namespace Player
 
             return transform.position;
         }
+        
+        
 
         void Update()
         {

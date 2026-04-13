@@ -144,6 +144,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "WS",
+                    "type": "Value",
+                    "id": "2f944869-18d6-4d9d-8ccb-1b6485ef1a1e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "AD",
                     "type": "Value",
                     "id": "5a42bd4c-3ec6-4e02-a3d8-666c93769552",
@@ -164,6 +173,39 @@
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "dc17f0f8-2225-461b-beba-c8172bfc6153",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WS",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "b378b057-caa2-4035-b23c-d7e57582c528",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WS",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a7511315-4cc6-4f8d-a656-0646d0562c99",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WS",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

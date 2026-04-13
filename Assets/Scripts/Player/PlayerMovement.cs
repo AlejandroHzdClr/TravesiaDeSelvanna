@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,9 +15,11 @@ namespace Player
         [SerializeField] private Transform groundCheck;
         
         private float hInput;
+        private float vInput;
         private int groundMask;
         private bool isGrounded;
         private bool jumpPressed;
+        private bool canUseStairs;
 
         private PlayerInput input;
         [SerializeField] private float airControlMultiplier = 1.2f;
@@ -57,7 +60,11 @@ namespace Player
             {
                 hInput = input.Bosque.AD.ReadValue<float>();
             }
-            
+
+            if (canUseStairs)
+            {
+                vInput = input.Terror.WS.ReadValue<float>();
+            }
             
             if (hInput>0)
             {
@@ -95,10 +102,30 @@ namespace Player
             if (!isGrounded)
                 speed *= airControlMultiplier;
 
-            Main.Rb.linearVelocity = new Vector2(
-                hInput * speed,
-                Main.Rb.linearVelocity.y
-            );
+            Vector2 vel = Main.Rb.linearVelocity;
+
+            vel.x = hInput * speed;
+
+            if (canUseStairs)
+                vel.y = vInput * speed;
+
+            Main.Rb.linearVelocity = vel;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Stairs"))
+            {
+                canUseStairs = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Stairs"))
+            {
+                canUseStairs = false;
+            }
         }
 
         private void OnDrawGizmosSelected()

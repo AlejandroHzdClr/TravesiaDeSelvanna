@@ -230,6 +230,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""WS"",
+                    ""type"": ""Value"",
+                    ""id"": ""2f944869-18d6-4d9d-8ccb-1b6485ef1a1e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""AD"",
                     ""type"": ""Value"",
                     ""id"": ""5a42bd4c-3ec6-4e02-a3d8-666c93769552"",
@@ -250,6 +259,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""dc17f0f8-2225-461b-beba-c8172bfc6153"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WS"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b378b057-caa2-4035-b23c-d7e57582c528"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a7511315-4cc6-4f8d-a656-0646d0562c99"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -322,6 +364,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Terror_Shoot = m_Terror.FindAction("Shoot", throwIfNotFound: true);
         m_Terror_Light = m_Terror.FindAction("Light", throwIfNotFound: true);
         m_Terror_Aim = m_Terror.FindAction("Aim", throwIfNotFound: true);
+        m_Terror_WS = m_Terror.FindAction("WS", throwIfNotFound: true);
         m_Terror_AD = m_Terror.FindAction("AD", throwIfNotFound: true);
     }
 
@@ -536,6 +579,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Terror_Shoot;
     private readonly InputAction m_Terror_Light;
     private readonly InputAction m_Terror_Aim;
+    private readonly InputAction m_Terror_WS;
     private readonly InputAction m_Terror_AD;
     /// <summary>
     /// Provides access to input actions defined in input action map "Terror".
@@ -560,6 +604,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Terror/Aim".
         /// </summary>
         public InputAction @Aim => m_Wrapper.m_Terror_Aim;
+        /// <summary>
+        /// Provides access to the underlying input action "Terror/WS".
+        /// </summary>
+        public InputAction @WS => m_Wrapper.m_Terror_WS;
         /// <summary>
         /// Provides access to the underlying input action "Terror/AD".
         /// </summary>
@@ -599,6 +647,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @WS.started += instance.OnWS;
+            @WS.performed += instance.OnWS;
+            @WS.canceled += instance.OnWS;
             @AD.started += instance.OnAD;
             @AD.performed += instance.OnAD;
             @AD.canceled += instance.OnAD;
@@ -622,6 +673,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @WS.started -= instance.OnWS;
+            @WS.performed -= instance.OnWS;
+            @WS.canceled -= instance.OnWS;
             @AD.started -= instance.OnAD;
             @AD.performed -= instance.OnAD;
             @AD.canceled -= instance.OnAD;
@@ -722,6 +776,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAim(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "WS" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWS(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "AD" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

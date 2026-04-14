@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 7521005457292550653}
   - component: {fileID: 5007930043580970305}
   - component: {fileID: 7948455710705970222}
+  - component: {fileID: 5692984343996265714}
   - component: {fileID: 3709389359910364035}
   m_Layer: 0
   m_Name: Monster
@@ -223,6 +224,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base.BaseCharacter
   <TotalHealth>k__BackingField: 20
+--- !u!114 &5692984343996265714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481493049275606925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a9e6bdfb714942a05eb58d1a54496d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy.EnemyDying
+  prefab: {fileID: 6351012615038459697, guid: 43b8f7eaff925894a9806f5c92ff68b6, type: 3}
+  prob: 0.3
 --- !u!95 &3709389359910364035
 Animator:
   serializedVersion: 7

@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,31 @@ namespace Player
             base.Awake();
             
             input = new PlayerInput();
+            groundMask = LayerMask.GetMask("Ground");
+        }
+
+        private void OnEnable()
+        {
+            input.Enable();
+
+            if (Main.SlowPlaying)
+                input.Terror.Interact.performed += InteractPerformed;
+            else
+                input.Bosque.Jump.performed += OnJumpPerformed;
+        }
+
+        private void OnDisable()
+        {
+            if (Main.SlowPlaying)
+                input.Terror.Interact.performed -= InteractPerformed;
+            else
+                input.Bosque.Jump.performed -= OnJumpPerformed;
+
+            input.Disable();
+        }
+
+        private void Start()
+        {
             if (Main.SlowPlaying)
             {
                 input.Terror.Enable();
@@ -38,11 +64,12 @@ namespace Player
             {
                 input.Bosque.Enable();
                 input.Terror.Disable();
-                input.Bosque.Jump.performed += OnJumpPerformed;
             }
-            
-            
-            groundMask = LayerMask.GetMask("Ground");
+        }
+
+        private void InteractPerformed(InputAction.CallbackContext obj)
+        {
+            EventManager.OnRelease();
         }
 
         private void OnJumpPerformed(InputAction.CallbackContext obj)

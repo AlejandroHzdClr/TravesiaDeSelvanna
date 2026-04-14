@@ -8,18 +8,18 @@ namespace Base
     {
         [field: SerializeField] public float TotalHealth { get; private set; }
 
-        private float _currentHealth;
+        protected float CurrentHealth;
 
-        private void Awake()
+        public virtual void Awake()
         {
-            _currentHealth = TotalHealth;
+            CurrentHealth = TotalHealth;
         }
 
         public virtual void TakeDamage(float damage)
         {
-            _currentHealth -= damage;
+            CurrentHealth -= damage;
 
-            if (_currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 Destroy(gameObject);
             } 
@@ -27,7 +27,7 @@ namespace Base
 
         public void ShowHealth()
         {
-            Debug.Log("El enemigo tiene " + _currentHealth);
+            Debug.Log("El enemigo tiene " + CurrentHealth);
         }
     }
 }

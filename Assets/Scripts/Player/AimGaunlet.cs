@@ -14,11 +14,28 @@ namespace Player
         {
             base.Awake();
             controls = new PlayerInput();
-            myLight = transform.GetChild(0).gameObject;
-            
+            if (transform.childCount > 0)
+                myLight = transform.GetChild(0).gameObject;
+            else
+                myLight = null;
+
+        }
+        
+        private void OnEnable()
+        {
+            controls.Enable();
             controls.Terror.Light.started += LightOnstarted;
             controls.Terror.Light.canceled += LightOncanceled;
         }
+
+        
+        private void OnDisable()
+        {
+            controls.Terror.Light.started -= LightOnstarted;
+            controls.Terror.Light.canceled -= LightOncanceled;
+            controls.Disable();
+        }
+
 
         private void LightOncanceled(InputAction.CallbackContext obj)
         {

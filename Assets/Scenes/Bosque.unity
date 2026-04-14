@@ -478,6 +478,7 @@ MonoBehaviour:
   savedPosition: {x: -0.44520378, y: 22.405785, z: 0}
   savedOrientation: {x: 0, y: 0, z: 0}
   sceneNumber: 1
+  isDoor: 0
 --- !u!61 &420516307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1840,6 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.GameManager
   <SavedPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  playerHealth: 100
 --- !u!4 &1218839941
 Transform:
   m_ObjectHideFlags: 0
@@ -95622,6 +95624,7 @@ MonoBehaviour:
   savedPosition: {x: -9.03, y: -8.39, z: 0}
   savedOrientation: {x: 0, y: 0, z: 0}
   sceneNumber: 0
+  isDoor: 0
 --- !u!1001 &2103637795
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using Collectables;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Managers
@@ -17,12 +18,17 @@ namespace Managers
         
         public List<int> BooksList { get; private set; }
 
+        public float playerHealth = 100f;
+
+        public Random rng;
+
         private protected void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
                 BooksList = new List<int>();
+                rng = new Random();
                 DontDestroyOnLoad(Instance);
             }
             else
@@ -42,6 +48,22 @@ namespace Managers
         {
             BooksList.Add(id);
         }
+        
+        private void OnEnable()
+        {
+            EventManager.PlayerHealthChanged += UpdateHealth;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.PlayerHealthChanged -= UpdateHealth;
+        }
+
+        private void UpdateHealth(float newHealth)
+        {
+            playerHealth = newHealth;
+        }
+
 
 
     }

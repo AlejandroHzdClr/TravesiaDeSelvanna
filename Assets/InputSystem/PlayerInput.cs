@@ -246,6 +246,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""4220fd00-e7c0-4b3a-b5c1-4d8b79ec9d92"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -347,6 +356,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""AD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""680e8273-e130-479f-8ad0-4128cf3a641d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -366,6 +386,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Terror_Aim = m_Terror.FindAction("Aim", throwIfNotFound: true);
         m_Terror_WS = m_Terror.FindAction("WS", throwIfNotFound: true);
         m_Terror_AD = m_Terror.FindAction("AD", throwIfNotFound: true);
+        m_Terror_Interact = m_Terror.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -581,6 +602,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Terror_Aim;
     private readonly InputAction m_Terror_WS;
     private readonly InputAction m_Terror_AD;
+    private readonly InputAction m_Terror_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Terror".
     /// </summary>
@@ -612,6 +634,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Terror/AD".
         /// </summary>
         public InputAction @AD => m_Wrapper.m_Terror_AD;
+        /// <summary>
+        /// Provides access to the underlying input action "Terror/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Terror_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -653,6 +679,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AD.started += instance.OnAD;
             @AD.performed += instance.OnAD;
             @AD.canceled += instance.OnAD;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -679,6 +708,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AD.started -= instance.OnAD;
             @AD.performed -= instance.OnAD;
             @AD.canceled -= instance.OnAD;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -790,5 +822,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAD(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

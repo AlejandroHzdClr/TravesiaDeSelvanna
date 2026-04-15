@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base.BaseCharacter
   <TotalHealth>k__BackingField: 20
+  isEnemy: 1
 --- !u!114 &5692984343996265714
 MonoBehaviour:
   m_ObjectHideFlags: 0

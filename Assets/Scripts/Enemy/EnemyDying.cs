@@ -11,12 +11,15 @@ namespace Enemy
         [Range(0f,1f)]
         [SerializeField] private float prob;
 
-        private void OnDestroy()
+        public void Die()
         {
+            Debug.Log("ha sido destruido");
             if (GameManager.Instance.rng.NextDouble() < prob)
             {
+                Debug.Log("Genero pill");
                 Instantiate(prefab, transform.position, Quaternion.identity);
             }
+            Destroy(gameObject);
         }
     }
 }

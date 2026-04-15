@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.Spawners.FollowPlayerMonster
   speed: 3
+  isMoving: 1
 --- !u!58 &1930486772328761205
 CircleCollider2D:
   m_ObjectHideFlags: 0

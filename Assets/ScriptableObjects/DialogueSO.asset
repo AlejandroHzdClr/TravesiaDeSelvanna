@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogo:
   - nombre: Selvanna
     texto: Siento unos libros cerca... deberia ir a buscarlos
-    retrato: {fileID: -8557429861635281730, guid: c0e09b084cf24a64d9d80019acb22620, type: 3}
+    retrato: {fileID: -3306418382233796831, guid: 2ef46a7ba29b53f4099786fd08fde204, type: 3}
   - nombre: Selvanna
     texto: En esta zona, noto 3 libros...
-    retrato: {fileID: -8557429861635281730, guid: c0e09b084cf24a64d9d80019acb22620, type: 3}
+    retrato: {fileID: -3306418382233796831, guid: 2ef46a7ba29b53f4099786fd08fde204, type: 3}

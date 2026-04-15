@@ -9,6 +9,7 @@ namespace Enemy.Spawners
     public class FollowPlayerMonster : MonoBehaviour
     {
         [SerializeField] private float speed;
+        [SerializeField] private bool isMoving;
 
         private Transform target;
         private Transform root;
@@ -29,8 +30,28 @@ namespace Enemy.Spawners
             }
             else
             {
-                Vector3 normal = Vector3.right;
-                root.position += normal * (speed * Time.deltaTime);
+                if (isMoving)
+                {
+                    Vector3 normal = Vector3.right;
+                    root.position += normal * (speed * Time.deltaTime);
+                }
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                target = other.transform;
+                isFollowing = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                isFollowing = false;
             }
         }
     }

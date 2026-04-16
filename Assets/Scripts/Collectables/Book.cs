@@ -9,7 +9,7 @@ namespace Collectables
     {
 
         [SerializeField] private int bookID;
-
+        
         private void Awake()
         {
             if (GameManager.Instance != null &&
@@ -23,6 +23,7 @@ namespace Collectables
         public void BeingCollected(int id)
         {
             GameManager.Instance.AddThisBook(id);
+            EventManager.Instance.PickBook(id);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +32,7 @@ namespace Collectables
 
             if (other.CompareTag("Player"))
             {
-                BeingCollected(this.bookID);
+                BeingCollected(bookID);
                 this.gameObject.SetActive(false);
             }
         }

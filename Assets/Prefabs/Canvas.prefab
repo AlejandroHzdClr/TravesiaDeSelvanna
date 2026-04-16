@@ -1072,7 +1072,6 @@ GameObject:
   - component: {fileID: 901417423636251101}
   - component: {fileID: 3031483193890258539}
   - component: {fileID: 6749467521348796338}
-  - component: {fileID: 8902152446802765883}
   - component: {fileID: 458903684667476850}
   m_Layer: 5
   m_Name: Canvas
@@ -1165,25 +1164,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8902152446802765883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9145457119956838762}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee9587c4e104b18bb34ee6d5c1c7b52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue.DialogueController
-  tiempoTexto: 0.05
-  panelDialogo: {fileID: 8420832659107819558}
-  lineas: {fileID: 11400000, guid: cd03d1aa192c42e4587e11c6fe018947, type: 2}
-  textoNombre: {fileID: 1366177298471374714}
-  dialogoText: {fileID: 6450437110582287031}
-  sonidoLetras: {fileID: 8300000, guid: afe4305e2f72dc5438075cb1c356b9d9, type: 3}
-  imagen: {fileID: 566294367458994888}
 --- !u!114 &458903684667476850
 MonoBehaviour:
   m_ObjectHideFlags: 0

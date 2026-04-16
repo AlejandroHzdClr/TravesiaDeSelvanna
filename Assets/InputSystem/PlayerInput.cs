@@ -127,6 +127,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""53663cb7-16df-4a4e-a4e2-16a65bb990e3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -193,6 +202,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15e9cc71-e894-410f-939a-6fa5877da459"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -379,6 +399,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Bosque_Aim = m_Bosque.FindAction("Aim", throwIfNotFound: true);
         m_Bosque_AD = m_Bosque.FindAction("AD", throwIfNotFound: true);
         m_Bosque_Jump = m_Bosque.FindAction("Jump", throwIfNotFound: true);
+        m_Bosque_Interact = m_Bosque.FindAction("Interact", throwIfNotFound: true);
         // Terror
         m_Terror = asset.FindActionMap("Terror", throwIfNotFound: true);
         m_Terror_Shoot = m_Terror.FindAction("Shoot", throwIfNotFound: true);
@@ -472,6 +493,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Bosque_Aim;
     private readonly InputAction m_Bosque_AD;
     private readonly InputAction m_Bosque_Jump;
+    private readonly InputAction m_Bosque_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Bosque".
     /// </summary>
@@ -499,6 +521,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Bosque/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Bosque_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action "Bosque/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Bosque_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -537,6 +563,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -560,6 +589,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -779,6 +811,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Terror" which allows adding and removing callbacks.

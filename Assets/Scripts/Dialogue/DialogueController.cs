@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Managers;
 
 namespace Dialogue
 {
@@ -18,7 +19,15 @@ namespace Dialogue
         [SerializeField] private TMP_Text dialogoText;
         [SerializeField] private AudioClip sonidoLetras;
         [SerializeField] private Image imagen;
+
+        [Header("Opciones")]
+        [SerializeField] private bool isAutomatic;
+        [SerializeField] private bool willBeDestroy;
+
         private AudioSource audioSound;
+
+        // Para evitar suscripciones duplicadas
+        private bool isSubscribed = false;
 
         private void Awake()
         {
@@ -26,30 +35,60 @@ namespace Dialogue
             panelDialogo.SetActive(false);
         }
 
-        void Update()
+        private void OnEnable()
         {
-            if (isInRange && Input.GetKeyDown(KeyCode.Q))
+            StartCoroutine(WaitForEventManager());
+        }
+
+        private IEnumerator WaitForEventManager()
+        {
+            while (EventManager.Instance == null)
+                yield return null;
+
+            if (!isSubscribed)
             {
-                if (!isTalking)
-                {
-                    EmpezarDialogo();
-                }
-                else if (dialogoText.text == lineas.dialogo[lineasIndex].texto)
-                {
-                    SiguienteLinea();
-                }
-                else
-                {
-                    StopAllCoroutines();
-                    dialogoText.text = lineas.dialogo[lineasIndex].texto;
-                }
+                EventManager.Instance.OnInteract += OnInteractPressed;
+                isSubscribed = true;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (isSubscribed && EventManager.Instance != null)
+            {
+                EventManager.Instance.OnInteract -= OnInteractPressed;
+                isSubscribed = false;
+            }
+        }
+
+        private void OnInteractPressed()
+        {
+            if (!isInRange) return;
+
+            if (!isTalking)
+            {
+                EmpezarDialogo();
+            }
+            else if (dialogoText.text == lineas.dialogo[lineasIndex].texto)
+            {
+                SiguienteLinea();
+            }
+            else
+            {
+                StopAllCoroutines();
+                dialogoText.text = lineas.dialogo[lineasIndex].texto;
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
+            {
                 isInRange = true;
+
+                if (isAutomatic && !isTalking)
+                    EmpezarDialogo();
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -64,6 +103,8 @@ namespace Dialogue
             panelDialogo.SetActive(true);
             lineasIndex = 0;
             Time.timeScale = 0;
+
+            StopAllCoroutines();
             StartCoroutine(MostrarLineas());
         }
 
@@ -73,21 +114,29 @@ namespace Dialogue
 
             if (lineasIndex < lineas.dialogo.Count)
             {
+                StopAllCoroutines();
                 StartCoroutine(MostrarLineas());
             }
             else
             {
-                isTalking = false;
-                panelDialogo.SetActive(false);
-                Time.timeScale = 1;
+                TerminarDialogo();
             }
+        }
+
+        private void TerminarDialogo()
+        {
+            isTalking = false;
+            panelDialogo.SetActive(false);
+            Time.timeScale = 1;
+
+            if (willBeDestroy)
+                Destroy(gameObject);
         }
 
         private IEnumerator MostrarLineas()
         {
             dialogoText.text = string.Empty;
             textoNombre.text = lineas.dialogo[lineasIndex].nombre;
-            
 
             string textoActual = lineas.dialogo[lineasIndex].texto;
 

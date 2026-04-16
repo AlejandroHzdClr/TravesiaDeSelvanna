@@ -15,12 +15,12 @@ namespace Door
 
         private void OnEnable()
         {
-            EventManager.OnInteract += TryOpenDoor;
+            EventManager.Instance.OnInteract += TryOpenDoor;
         }
 
         private void OnDisable()
         {
-            EventManager.OnInteract -= TryOpenDoor;
+            EventManager.Instance.OnInteract -= TryOpenDoor;
         }
 
         private void TryOpenDoor()

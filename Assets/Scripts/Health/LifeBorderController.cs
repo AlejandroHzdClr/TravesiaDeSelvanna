@@ -17,29 +17,30 @@ namespace Health
         private void Start()
         {
             currentHealth = GameManager.Instance.playerHealth;
-            healthRemaining = maxHealth - currentHealth;
+            UpdateHealthBorders(currentHealth);
         }
+
+        private void UpdateHealthBorders(float newHealth)
+        {
+            float lostHealth = maxHealth - newHealth;
+            int bloques = Mathf.FloorToInt(lostHealth / 20f);
+
+            for (int i = 0; i < borders.Count; i++)
+            {
+                borders[i].SetActive(i < bloques);
+            }
+        }
+
 
         private void OnEnable()
         {
-            EventManager.PlayerHealthChanged += UpdateHealthBorders;
+            EventManager.Instance.PlayerHealthChanged += UpdateHealthBorders;
         }
         
         private void OnDisable()
         {
-            EventManager.PlayerHealthChanged -= UpdateHealthBorders;
+            EventManager.Instance.PlayerHealthChanged -= UpdateHealthBorders;
         }
 
-        private void UpdateHealthBorders(float obj)
-        {
-            healthRemaining = maxHealth - obj;
-
-            int bloques = Mathf.FloorToInt(healthRemaining / 20f);
-
-            for (int i = 0; i < borders.Count; i++)
-            {
-                borders[i].SetActive(i<bloques);
-            }
-        }
     }
 }

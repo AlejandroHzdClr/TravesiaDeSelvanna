@@ -36,6 +36,8 @@ namespace Collectables
             {
                 GameManager.Instance.playerHealth = 100f;
             }
+            
+            EventManager.Instance.HealthChanged(GameManager.Instance.playerHealth);
         }
     }
     

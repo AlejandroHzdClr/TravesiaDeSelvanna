@@ -51,12 +51,12 @@ namespace Managers
         
         private void OnEnable()
         {
-            EventManager.PlayerHealthChanged += UpdateHealth;
+            EventManager.Instance.PlayerHealthChanged += UpdateHealth;
         }
 
         private void OnDisable()
         {
-            EventManager.PlayerHealthChanged -= UpdateHealth;
+            EventManager.Instance.PlayerHealthChanged -= UpdateHealth;
         }
 
         private void UpdateHealth(float newHealth)

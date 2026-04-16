@@ -23,7 +23,7 @@ namespace Player
         {
             CurrentHealth -= damage;
             
-            EventManager.HealthChanged(CurrentHealth);
+            EventManager.Instance.HealthChanged(CurrentHealth);
 
             if (CurrentHealth <= 0)
             {

@@ -38,17 +38,27 @@ namespace Player
             input.Enable();
 
             if (Main.SlowPlaying)
+            {
                 input.Terror.Interact.performed += InteractPerformed;
+            }
             else
+            {
                 input.Bosque.Jump.performed += OnJumpPerformed;
+                input.Bosque.Interact.performed += InteractPerformed;
+            }
         }
 
         private void OnDisable()
         {
             if (Main.SlowPlaying)
+            {
                 input.Terror.Interact.performed -= InteractPerformed;
+            }
             else
+            {
                 input.Bosque.Jump.performed -= OnJumpPerformed;
+                input.Bosque.Interact.performed -= InteractPerformed;
+            }
 
             input.Disable();
         }
@@ -69,7 +79,7 @@ namespace Player
 
         private void InteractPerformed(InputAction.CallbackContext obj)
         {
-            EventManager.OnRelease();
+            EventManager.Instance.OnRelease();
         }
 
         private void OnJumpPerformed(InputAction.CallbackContext obj)

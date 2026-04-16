@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using Managers;
 using UnityEngine;
 
@@ -12,22 +12,39 @@ namespace Door
         [SerializeField] private bool isDoor;
 
         private bool playerCanInteract;
+        private bool isSubscribed = false;
 
         private void OnEnable()
         {
-            EventManager.Instance.OnInteract += TryOpenDoor;
+            StartCoroutine(WaitForEventManager());
+        }
+
+        private IEnumerator WaitForEventManager()
+        {
+            while (EventManager.Instance == null)
+                yield return null;
+
+            if (!isSubscribed)
+            {
+                EventManager.Instance.OnInteract += TryOpenDoor;
+                isSubscribed = true;
+            }
         }
 
         private void OnDisable()
         {
-            EventManager.Instance.OnInteract -= TryOpenDoor;
+            if (isSubscribed && EventManager.Instance != null)
+            {
+                EventManager.Instance.OnInteract -= TryOpenDoor;
+                isSubscribed = false;
+            }
         }
 
         private void TryOpenDoor()
         {
             if (playerCanInteract)
             {
-                GameManager.Instance.LoadNextScene(savedPosition,savedOrientation,sceneNumber);
+                GameManager.Instance.LoadNextScene(savedPosition, savedOrientation, sceneNumber);
             }
         }
 
@@ -37,7 +54,7 @@ namespace Door
             {
                 if (!isDoor)
                 {
-                    GameManager.Instance.LoadNextScene(savedPosition,savedOrientation,sceneNumber);
+                    GameManager.Instance.LoadNextScene(savedPosition, savedOrientation, sceneNumber);
                 }
                 else
                 {
@@ -48,12 +65,9 @@ namespace Door
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && isDoor)
             {
-                if (isDoor)
-                {
-                    playerCanInteract = false;
-                }
+                playerCanInteract = false;
             }
         }
     }

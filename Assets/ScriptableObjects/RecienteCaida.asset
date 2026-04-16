@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282e10387f6919a4494739ac480c6678, type: 3}
+  m_Name: RecienteCaida
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  dialogo:
+  - nombre: Selvanna
+    texto: Uff... ha sido una caida muy larga...
+    retrato: {fileID: -7666730124261305028, guid: c97e7ae73a99f064881c156924f734bf, type: 3}
+  - nombre: Selvanna
+    texto: No creo que pueda saltar desde ahora en adelante...
+    retrato: {fileID: -7666730124261305028, guid: c97e7ae73a99f064881c156924f734bf, type: 3}
+  - nombre: Selvanna
+    texto: "Y tampoco podr\xE9 correr... tendre que ir con cuidado"
+    retrato: {fileID: -7666730124261305028, guid: c97e7ae73a99f064881c156924f734bf, type: 3}

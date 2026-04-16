@@ -7,6 +7,7 @@ namespace Enemy
     public class EnemyDying : MonoBehaviour
     {
         [SerializeField] private GameObject prefab;
+        [SerializeField] private bool isChild;
         
         [Range(0f,1f)]
         [SerializeField] private float prob;
@@ -19,7 +20,16 @@ namespace Enemy
                 Debug.Log("Genero pill");
                 Instantiate(prefab, transform.position, Quaternion.identity);
             }
-            Destroy(gameObject);
+
+            if (!isChild)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(transform.root.gameObject);
+            }
+            
         }
     }
 }

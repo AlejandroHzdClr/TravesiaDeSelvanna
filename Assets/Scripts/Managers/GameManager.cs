@@ -1,39 +1,63 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Collectables;
-using Unity.VectorGraphics;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [field: SerializeField]public Vector3 SavedPosition { get; private set; }
+        [field: SerializeField] public Vector3 SavedPosition { get; private set; }
         public Vector3 SavedOrientation { get; private set; }
         public static GameManager Instance { get; private set; }
-        
-        public List<int> BooksList { get; private set; }
 
+        public List<int> BooksList { get; private set; }
         public float playerHealth = 100f;
 
         public Random rng;
 
-        private protected void Awake()
+        private bool isSubscribed = false;
+
+        private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
                 BooksList = new List<int>();
                 rng = new Random();
-                DontDestroyOnLoad(Instance);
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
-                Destroy(this);
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnEnable()
+        {
+            StartCoroutine(WaitForEventManager());
+        }
+
+        private IEnumerator WaitForEventManager()
+        {
+            while (EventManager.Instance == null)
+                yield return null;
+
+            if (!isSubscribed)
+            {
+                EventManager.Instance.PlayerHealthChanged += UpdateHealth;
+                isSubscribed = true;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (isSubscribed && EventManager.Instance != null)
+            {
+                EventManager.Instance.PlayerHealthChanged -= UpdateHealth;
+                isSubscribed = false;
             }
         }
 
@@ -41,30 +65,33 @@ namespace Managers
         {
             SavedPosition = targetPosition;
             SavedOrientation = targetOrientation;
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene(sceneNumber);
         }
 
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+
+            GameObject player = GameObject.FindWithTag("Player");
+
+            if (player != null)
+            {
+                player.transform.position = SavedPosition;
+                player.transform.eulerAngles = SavedOrientation;
+            }
+        }
+
+        
         public void AddThisBook(int id)
         {
             BooksList.Add(id);
-        }
-        
-        private void OnEnable()
-        {
-            EventManager.Instance.PlayerHealthChanged += UpdateHealth;
-        }
-
-        private void OnDisable()
-        {
-            EventManager.Instance.PlayerHealthChanged -= UpdateHealth;
         }
 
         private void UpdateHealth(float newHealth)
         {
             playerHealth = newHealth;
         }
-
-
-
     }
 }

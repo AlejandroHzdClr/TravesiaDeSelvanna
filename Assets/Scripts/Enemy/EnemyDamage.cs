@@ -11,6 +11,7 @@ namespace Enemy
             if (other.gameObject.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(damage);
+                damageable.ShowHealth();
             }
         }
 

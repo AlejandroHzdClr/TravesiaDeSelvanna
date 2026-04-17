@@ -7,4 +7,8 @@ using UnityEngine.UI;
 public class DialogueSO : ScriptableObject
 {
     [SerializeField] public List<LineaTexto> dialogo;
+    [SerializeField] public int id;
+
+    [System.NonSerialized]
+    public bool hasBeenReproducted = false;
 }

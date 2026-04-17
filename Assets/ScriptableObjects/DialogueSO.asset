@@ -19,3 +19,4 @@ MonoBehaviour:
   - nombre: Selvanna
     texto: En esta zona, noto 3 libros...
     retrato: {fileID: -3306418382233796831, guid: 2ef46a7ba29b53f4099786fd08fde204, type: 3}
+  id: 1

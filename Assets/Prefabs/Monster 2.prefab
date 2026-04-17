@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6946937776756285709}
   - component: {fileID: 8177849344888406950}
   m_Layer: 0
-  m_Name: Monster 1
+  m_Name: Monster 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8a98a0448ade5429a7fc13917bfa4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.Spawners.FollowPlayerMonster
-  speed: 2.5
+  speed: 1.5
   isMoving: 1
 --- !u!58 &1930486772328761205
 CircleCollider2D:

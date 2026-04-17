@@ -19,3 +19,4 @@ MonoBehaviour:
   - nombre: Selvanna
     texto: Deberia ir a mirar por los alrededores
     retrato: {fileID: -3306418382233796831, guid: 2ef46a7ba29b53f4099786fd08fde204, type: 3}
+  id: 3

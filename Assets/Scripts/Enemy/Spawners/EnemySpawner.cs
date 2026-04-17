@@ -18,7 +18,7 @@ namespace Enemy.Spawners
         {
             while (true)
             {
-                Instantiate(enemy, transform.position, Quaternion.identity);
+                Instantiate(enemy, transform.position, transform.rotation);
                 yield return new WaitForSeconds(intervalo);
             }
         }

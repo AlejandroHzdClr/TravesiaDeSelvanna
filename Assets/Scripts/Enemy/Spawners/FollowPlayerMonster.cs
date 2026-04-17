@@ -32,7 +32,7 @@ namespace Enemy.Spawners
             {
                 if (isMoving)
                 {
-                    Vector3 normal = Vector3.right;
+                    Vector3 normal = root.right;
                     root.position += normal * (speed * Time.deltaTime);
                 }
             }

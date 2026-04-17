@@ -14,6 +14,7 @@ namespace Managers
         public static GameManager Instance { get; private set; }
 
         public List<int> BooksList { get; private set; }
+        public List<int> DialogueID { get; private set; }
         public float playerHealth = 100f;
 
         public Random rng;
@@ -26,6 +27,7 @@ namespace Managers
             {
                 Instance = this;
                 BooksList = new List<int>();
+                DialogueID = new List<int>();
                 rng = new Random();
                 DontDestroyOnLoad(gameObject);
             }

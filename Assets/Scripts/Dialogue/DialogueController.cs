@@ -23,6 +23,7 @@ namespace Dialogue
         [Header("Opciones")]
         [SerializeField] private bool isAutomatic;
         [SerializeField] private bool willBeDestroy;
+        [SerializeField] private bool canBeReproductedOne;
 
         private AudioSource audioSound;
 
@@ -86,7 +87,7 @@ namespace Dialogue
             {
                 isInRange = true;
 
-                if (isAutomatic && !isTalking)
+                if (isAutomatic && !isTalking )
                     EmpezarDialogo();
             }
         }
@@ -99,6 +100,13 @@ namespace Dialogue
 
         private void EmpezarDialogo()
         {
+            // Bloqueo si ya se reprodujo
+            if (canBeReproductedOne && GameManager.Instance.DialogueID.Contains(lineas.id))
+            {
+                Debug.Log("Este diálogo ya fue ejecutado");
+                return;
+            }
+
             isTalking = true;
             panelDialogo.SetActive(true);
             lineasIndex = 0;
@@ -128,6 +136,10 @@ namespace Dialogue
             isTalking = false;
             panelDialogo.SetActive(false);
             Time.timeScale = 1;
+
+            // Guardar estado en el ScriptableObject
+            if (canBeReproductedOne)
+                GameManager.Instance.DialogueID.Add(lineas.id);
 
             if (willBeDestroy)
                 Destroy(gameObject);

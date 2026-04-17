@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Habitacion5.unity
     guid: 62e24e3ec408b3146ad15289f6d67170
+  - enabled: 1
+    path: Assets/Scenes/Terminaste.unity
+    guid: bf5fa706783d5f4458bb5a77cd7e6813
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 013737174b1e03e4988f9f5f06f3a71e, type: 3}
   m_UseUCBPForAssetBundles: 0

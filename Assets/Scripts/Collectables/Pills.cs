@@ -10,7 +10,14 @@ namespace Collectables
         [SerializeField] private float heathHealed;
         [SerializeField] private float timeOfLife;
 
+        private AudioSource audioSource;
         private float currentTime = 0f;
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         private void Update()
         {
             currentTime += Time.deltaTime;
@@ -38,6 +45,11 @@ namespace Collectables
             }
             
             EventManager.Instance.HealthChanged(GameManager.Instance.playerHealth);
+            
+            if (audioSource.clip != null)
+            {
+                AudioSource.PlayClipAtPoint(audioSource.clip,transform.position);
+            }
         }
     }
     

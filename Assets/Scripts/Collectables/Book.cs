@@ -9,7 +9,8 @@ namespace Collectables
     {
 
         [SerializeField] private int bookID;
-        
+
+        private AudioSource audioSource;
         private void Awake()
         {
             if (GameManager.Instance != null &&
@@ -18,12 +19,18 @@ namespace Collectables
                 gameObject.SetActive(false);
             }
 
+            audioSource = GetComponent<AudioSource>();
+
         }
 
         public void BeingCollected(int id)
         {
             GameManager.Instance.AddThisBook(id);
             EventManager.Instance.PickBook(id);
+            if (audioSource.clip != null)
+            {
+                AudioSource.PlayClipAtPoint(audioSource.clip,transform.position);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -42814,7 +42814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door.DoorLevel
   savedPosition: {x: 0, y: 0, z: 0}
   savedOrientation: {x: 0, y: 0, z: 0}
-  sceneNumber: 0
+  sceneNumber: 7
   isDoor: 0
 --- !u!4 &980958014 stripped
 Transform:

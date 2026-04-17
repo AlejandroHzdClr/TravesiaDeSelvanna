@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282e10387f6919a4494739ac480c6678, type: 3}
+  m_Name: Cuerda
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  dialogo:
+  - nombre: Selvanna
+    texto: "Esto... parece una cuerda, la subir\xE9"
+    retrato: {fileID: -3306418382233796831, guid: 2ef46a7ba29b53f4099786fd08fde204, type: 3}
+  id: 5

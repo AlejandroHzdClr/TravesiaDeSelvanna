@@ -1,15 +1,15 @@
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.InputSystem;
 
 public class ShootSystem : MonoBehaviour
 {
+    [SerializeField] private InputSystemSO inputSO;
     [SerializeField] private Bullet ball;
-    public ObjectPool<Bullet> pool { get; set; }
 
-    private PlayerInput controls;
+    public ObjectPool<Bullet> pool { get; private set; }
 
-    private Vector3 mousePoint;
+    private AudioSource audioSource;
 
     private bool isCharging = false;
     private float charge = 0f;
@@ -17,32 +17,79 @@ public class ShootSystem : MonoBehaviour
     [SerializeField] private float maxCharge = 2f;
     [SerializeField] private float chargeSpeed = 1f;
 
-    void Awake()
+    [SerializeField] private AudioClip chargeSound;
+    [SerializeField] private AudioClip releaseSound;
+
+    private bool ignoreFirstFrame = true;
+    private Vector2 aimScreenPos;
+    private Vector3 mousePoint;
+
+    private void Awake()
     {
-        controls = new PlayerInput();
-
-        controls.Bosque.Shoot.started += _ =>
-        {
-            isCharging = true;
-            charge = 0f;
-        };
-
-        controls.Bosque.Shoot.canceled += _ =>
-        {
-            if (charge >= maxCharge)
-            {
-                mousePoint = GetMouseWorldPoint();
-                pool.Get();
-            }
-
-            isCharging = false;
-        };
-
+        audioSource = GetComponent<AudioSource>();
         pool = new ObjectPool<Bullet>(CreateBullet, GetBullet, ReleaseBullet);
     }
 
-    void OnEnable() => controls.Enable();
-    void OnDisable() => controls.Disable();
+    private void OnEnable()
+    {
+        inputSO.OnShootStarted += StartCharge;
+        inputSO.OnShootEnded += ReleaseShot;
+        inputSO.OnAim += UpdateAim;
+    }
+
+    private void OnDisable()
+    {
+        inputSO.OnShootStarted -= StartCharge;
+        inputSO.OnShootEnded -= ReleaseShot;
+        inputSO.OnAim -= UpdateAim;
+    }
+
+    private void StartCharge()
+    {
+        if (ignoreFirstFrame) return;
+        if (Time.timeScale == 0) return;
+
+        isCharging = true;
+        charge = 0f;
+
+        if (chargeSound != null)
+            audioSource.PlayOneShot(chargeSound);
+    }
+
+    private void ReleaseShot()
+    {
+        if (ignoreFirstFrame) return;
+        if (Time.timeScale == 0) return;
+
+        audioSource.Stop();
+
+        if (charge >= maxCharge)
+        {
+            mousePoint = GetMouseWorldPoint();
+            pool.Get();
+
+            if (releaseSound != null)
+                audioSource.PlayOneShot(releaseSound);
+        }
+
+        isCharging = false;
+    }
+
+    private void UpdateAim(Vector2 screenPos)
+    {
+        aimScreenPos = screenPos;
+    }
+
+    private Vector3 GetMouseWorldPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(aimScreenPos);
+        Plane plane = new Plane(Vector3.forward, Vector3.zero);
+
+        if (plane.Raycast(ray, out float distance))
+            return ray.GetPoint(distance);
+
+        return transform.position;
+    }
 
     private Bullet CreateBullet()
     {
@@ -65,21 +112,14 @@ public class ShootSystem : MonoBehaviour
         bullet.gameObject.SetActive(false);
     }
 
-    private Vector3 GetMouseWorldPoint()
+    private void Update()
     {
-        Vector2 mouseScreen = controls.Bosque.Aim.ReadValue<Vector2>();
+        if (ignoreFirstFrame)
+        {
+            ignoreFirstFrame = false;
+            return;
+        }
 
-        Ray ray = Camera.main.ScreenPointToRay(mouseScreen);
-        Plane plane = new Plane(Vector3.forward, Vector3.zero);
-
-        if (plane.Raycast(ray, out float distance))
-            return ray.GetPoint(distance);
-
-        return transform.position;
-    }
-
-    void Update()
-    {
         if (isCharging)
         {
             charge += chargeSpeed * Time.deltaTime;

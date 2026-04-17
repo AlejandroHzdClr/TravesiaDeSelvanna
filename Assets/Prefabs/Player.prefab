@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealthSystem
   <TotalHealth>k__BackingField: 100
+  isEnemy: 0
+  audioClip: {fileID: 0}
 --- !u!114 &5203898383537047351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +223,7 @@ MonoBehaviour:
   radius: 0.2
   groundCheck: {fileID: 1030026703635727731}
   airControlMultiplier: 1.5
+  inputSO: {fileID: 0}
 --- !u!114 &773493205293646626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,9 +236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce6ee48cea6a8246a5c193d5e6b940c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShootSystem
+  inputSO: {fileID: 0}
   ball: {fileID: 2320110731953602698, guid: da64c4e7385db5741aecf6effbfeb4ea, type: 3}
   maxCharge: 2
   chargeSpeed: 3.5
+  chargeSound: {fileID: 0}
+  releaseSound: {fileID: 0}
 --- !u!95 &3370022864568208928
 Animator:
   serializedVersion: 7

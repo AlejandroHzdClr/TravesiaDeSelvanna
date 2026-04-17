@@ -9,6 +9,9 @@ namespace Base
     {
         [field: SerializeField] public float TotalHealth { get; private set; }
         [SerializeField] private bool isEnemy;
+        [SerializeField] private AudioClip audioClip;
+        
+        private AudioSource audioSource;
         private EnemyDying enemyDying;
 
         protected float CurrentHealth;
@@ -18,6 +21,7 @@ namespace Base
             CurrentHealth = TotalHealth;
             if (isEnemy)
             {
+                audioSource = GetComponent<AudioSource>();
                 enemyDying = GetComponent<EnemyDying>();
             }
         }
@@ -25,6 +29,9 @@ namespace Base
         public virtual void TakeDamage(float damage)
         {
             CurrentHealth -= damage;
+
+            if (audioClip != null)
+                AudioSource.PlayClipAtPoint(audioClip, transform.position);
 
             if (CurrentHealth <= 0)
             {

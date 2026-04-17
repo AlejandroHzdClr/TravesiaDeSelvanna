@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Managers;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class FinalEventController : MonoBehaviour
 {
     [SerializeField] private GameObject normalSpawners;
     [SerializeField] private GameObject finalSpawners;
-    [SerializeField] private GameObject finalDialogue;
+    [SerializeField] private List<GameObject> finalObject;
 
     [Header("PlayerPosition")] 
     [SerializeField] private Vector3 targetPosition;
@@ -22,7 +23,12 @@ public class FinalEventController : MonoBehaviour
             MovePlayerHere(targetPosition);
 
             finalSpawners.SetActive(true);
-            finalDialogue.SetActive(true);
+
+            foreach (GameObject ob in finalObject)
+            {
+                ob.SetActive(true);
+            }
+            
         }
     }
 

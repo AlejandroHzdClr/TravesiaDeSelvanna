@@ -152,15 +152,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee9587c4e104b18bb34ee6d5c1c7b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue.DialogueController
+  inputSO: {fileID: 11400000, guid: 4bd42f9cb6fa73a488493af9bce1e871, type: 2}
   tiempoTexto: 0.05
   panelDialogo: {fileID: 0}
-  lineas: {fileID: 11400000, guid: cd03d1aa192c42e4587e11c6fe018947, type: 2}
+  lineas: {fileID: 11400000, guid: db31057e8467e004b83c38de6e0dce9b, type: 2}
   textoNombre: {fileID: 0}
   dialogoText: {fileID: 0}
   sonidoLetras: {fileID: 8300000, guid: afe4305e2f72dc5438075cb1c356b9d9, type: 3}
   imagen: {fileID: 0}
   isAutomatic: 1
-  willBeDestroy: 1
+  willBeDestroy: 0
+  canBeReproductedOne: 0
 --- !u!82 &1345788086927576167
 AudioSource:
   m_ObjectHideFlags: 0
@@ -174,8 +176,8 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.344
+  m_Pitch: 2.09
   Loop: 0
   Mute: 0
   Spatialize: 0

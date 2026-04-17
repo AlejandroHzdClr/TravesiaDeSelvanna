@@ -10,7 +10,9 @@ namespace Enemy.Spawners
     {
         [SerializeField] private float speed;
         [SerializeField] private bool isMoving;
+        [SerializeField] private AudioClip audioClip;
 
+        private AudioSource audioSource;
         private Transform target;
         private Transform root;
         private bool isFollowing;
@@ -18,6 +20,7 @@ namespace Enemy.Spawners
         private void Awake()
         {
             root = transform.parent;
+            audioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -44,6 +47,7 @@ namespace Enemy.Spawners
             {
                 target = other.transform;
                 isFollowing = true;
+                audioSource.PlayOneShot(audioClip);
             }
         }
 

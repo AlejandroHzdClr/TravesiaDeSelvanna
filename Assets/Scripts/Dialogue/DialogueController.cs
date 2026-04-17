@@ -1,13 +1,16 @@
 using System.Collections;
+using Managers;
+using ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Managers;
 
 namespace Dialogue
 {
     public class DialogueController : MonoBehaviour
     {
+        [SerializeField] private InputSystemSO inputSO;
+
         private bool isInRange = false;
         private bool isTalking = false;
         private int lineasIndex;
@@ -27,9 +30,6 @@ namespace Dialogue
 
         private AudioSource audioSound;
 
-        // Para evitar suscripciones duplicadas
-        private bool isSubscribed = false;
-
         private void Awake()
         {
             audioSound = GetComponent<AudioSource>();
@@ -38,28 +38,12 @@ namespace Dialogue
 
         private void OnEnable()
         {
-            StartCoroutine(WaitForEventManager());
-        }
-
-        private IEnumerator WaitForEventManager()
-        {
-            while (EventManager.Instance == null)
-                yield return null;
-
-            if (!isSubscribed)
-            {
-                EventManager.Instance.OnInteract += OnInteractPressed;
-                isSubscribed = true;
-            }
+            inputSO.OnInteractPressed += OnInteractPressed;
         }
 
         private void OnDisable()
         {
-            if (isSubscribed && EventManager.Instance != null)
-            {
-                EventManager.Instance.OnInteract -= OnInteractPressed;
-                isSubscribed = false;
-            }
+            inputSO.OnInteractPressed -= OnInteractPressed;
         }
 
         private void OnInteractPressed()
@@ -87,7 +71,7 @@ namespace Dialogue
             {
                 isInRange = true;
 
-                if (isAutomatic && !isTalking )
+                if (isAutomatic && !isTalking)
                     EmpezarDialogo();
             }
         }
@@ -100,16 +84,13 @@ namespace Dialogue
 
         private void EmpezarDialogo()
         {
-            // Bloqueo si ya se reprodujo
             if (canBeReproductedOne && GameManager.Instance.DialogueID.Contains(lineas.id))
-            {
-                Debug.Log("Este diálogo ya fue ejecutado");
                 return;
-            }
 
             isTalking = true;
             panelDialogo.SetActive(true);
             lineasIndex = 0;
+
             Time.timeScale = 0;
 
             StopAllCoroutines();
@@ -137,7 +118,6 @@ namespace Dialogue
             panelDialogo.SetActive(false);
             Time.timeScale = 1;
 
-            // Guardar estado en el ScriptableObject
             if (canBeReproductedOne)
                 GameManager.Instance.DialogueID.Add(lineas.id);
 

@@ -1,5 +1,5 @@
-using System;
 using Managers;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,12 +9,14 @@ namespace Player
     {
         private static readonly int Jumping = Animator.StringToHash("Jumping");
         private static readonly int Walking = Animator.StringToHash("Walking");
-    
-        [SerializeField] private float radius;
 
-        [Header("Ground Check")]
+        [SerializeField] private float radius;
         [SerializeField] private Transform groundCheck;
-        
+        [SerializeField] private float airControlMultiplier = 1.2f;
+        [SerializeField] private InputSystemSO inputSO;
+        [SerializeField] private AudioClip audioClip;
+
+        private AudioSource audioSource;
         private float hInput;
         private float vInput;
         private int groundMask;
@@ -22,114 +24,80 @@ namespace Player
         private bool jumpPressed;
         private bool canUseStairs;
 
-        private PlayerInput input;
-        [SerializeField] private float airControlMultiplier = 1.2f;
+        private PlayerInput input; // SOLO para WS
 
         protected override void Awake()
         {
             base.Awake();
-            
-            input = new PlayerInput();
+            audioSource = GetComponent<AudioSource>();
             groundMask = LayerMask.GetMask("Ground");
+            input = new PlayerInput();
         }
 
         private void OnEnable()
         {
             input.Enable();
 
-            if (Main.SlowPlaying)
-            {
-                input.Terror.Interact.performed += InteractPerformed;
-            }
-            else
-            {
-                input.Bosque.Jump.performed += OnJumpPerformed;
-                input.Bosque.Interact.performed += InteractPerformed;
-            }
+            inputSO.OnMove += HandleMove;
+            inputSO.OnJumpPressed += HandleJump;
+            inputSO.OnInteractPressed += HandleInteract;
         }
 
         private void OnDisable()
         {
-            if (Main.SlowPlaying)
-            {
-                input.Terror.Interact.performed -= InteractPerformed;
-            }
-            else
-            {
-                input.Bosque.Jump.performed -= OnJumpPerformed;
-                input.Bosque.Interact.performed -= InteractPerformed;
-            }
+            inputSO.OnMove -= HandleMove;
+            inputSO.OnJumpPressed -= HandleJump;
+            inputSO.OnInteractPressed -= HandleInteract;
 
             input.Disable();
         }
 
-        private void Start()
+        private void HandleMove(Vector2 move)
         {
-            if (Main.SlowPlaying)
-            {
-                input.Terror.Enable();
-                input.Bosque.Disable();
-            }
-            else
-            {
-                input.Bosque.Enable();
-                input.Terror.Disable();
-            }
+            hInput = move.x;
         }
 
-        private void InteractPerformed(InputAction.CallbackContext obj)
+        private void HandleJump()
+        {
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(audioClip);
+            }
+            jumpPressed = true;
+        }
+
+        private void HandleInteract()
         {
             EventManager.Instance.OnRelease();
         }
 
-        private void OnJumpPerformed(InputAction.CallbackContext obj)
+        private void Update()
         {
-            jumpPressed = true;
-        }
-
-        void Update()
-        {
-            if (Main.SlowPlaying)
-            {
-                hInput = input.Terror.AD.ReadValue<float>();
-            }
-            else
-            {
-                hInput = input.Bosque.AD.ReadValue<float>();
-            }
-
-            if (canUseStairs)
-            {
+            if (canUseStairs && Main.SlowPlaying)
                 vInput = input.Terror.WS.ReadValue<float>();
-            }
-            
-            if (hInput>0)
-            {
+            else
+                vInput = 0f;
+
+            if (hInput > 0)
                 transform.eulerAngles = Vector3.zero;
-            }
-            else if(hInput < 0)
-            {
+            else if (hInput < 0)
                 transform.eulerAngles = new Vector3(0, 180, 0);
-            }
-        
-            Main.Anim.SetBool(Walking,hInput!=0);
-        
+
+            Main.Anim.SetBool(Walking, hInput != 0);
+
             isGrounded = Physics2D.OverlapCircle(
                 groundCheck.position,
                 radius,
                 groundMask
             );
 
-            
-            if (isGrounded && jumpPressed)
+            if (isGrounded && jumpPressed && !Main.SlowPlaying)
             {
                 Main.Rb.AddForce(Vector2.up * Main.JumpForce, ForceMode2D.Impulse);
                 jumpPressed = false;
             }
-            
 
-            Main.Anim.SetBool(Jumping,!(isGrounded));
-        
+            Main.Anim.SetBool(Jumping, !isGrounded);
         }
 
         private void FixedUpdate()
@@ -152,17 +120,13 @@ namespace Player
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Stairs"))
-            {
                 canUseStairs = true;
-            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Stairs"))
-            {
                 canUseStairs = false;
-            }
         }
 
         private void OnDrawGizmosSelected()

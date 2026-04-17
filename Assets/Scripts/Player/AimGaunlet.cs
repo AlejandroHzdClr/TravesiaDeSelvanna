@@ -5,8 +5,10 @@ namespace Player
 {
     public class AimGaunlet : PlayerSystem
     {
+        [SerializeField] private AudioClip audioClip;
         private PlayerInput controls;
         private PlayerMain playerMain;
+        private AudioSource audioSource;
 
         private GameObject myLight;
 
@@ -14,6 +16,7 @@ namespace Player
         {
             base.Awake();
             controls = new PlayerInput();
+            audioSource = GetComponent<AudioSource>();
             if (transform.childCount > 0)
                 myLight = transform.GetChild(0).gameObject;
             else
@@ -44,6 +47,10 @@ namespace Player
 
         private void LightOnstarted(InputAction.CallbackContext obj)
         {
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(audioClip);
+            }
             myLight.gameObject.SetActive(true);
         }
 
